@@ -52,14 +52,15 @@ namespace ProjetPFE.Repository
 
         public async Task<offre> CreateOffre(OffreForCreationDto offre)
         {
-            var query = "INSERT INTO offre (nb_poste, fonction, description, mission) " +
-                "VALUES ( @nb_poste, @fonction, @description, @mission) SELECT CAST(SCOPE_IDENTITY() as int)";
+            var query = "INSERT INTO offre (nb_poste, fonction, description, mission, type_offre) " +
+                "VALUES ( @nb_poste, @fonction, @description, @mission, @type_offre) SELECT CAST(SCOPE_IDENTITY() as int)";
 
             var parameters = new DynamicParameters();
             parameters.Add("nb_poste", offre.nb_poste, DbType.Int32);
             parameters.Add("fonction", offre.fonction, DbType.String);
             parameters.Add("description", offre.description, DbType.String);
             parameters.Add("mission", offre.mission, DbType.String);
+            parameters.Add("type_offre", offre.type_offre, DbType.String);
 
 
             using (var connection = _context.CreateConnection())
@@ -73,6 +74,7 @@ namespace ProjetPFE.Repository
                     fonction = offre.fonction,
                     description = offre.description,
                     mission = offre.mission,
+                    type_offre = offre.type_offre,
 
 
                 };
@@ -85,7 +87,7 @@ namespace ProjetPFE.Repository
         public async Task UpdateOffre(int offre_id, OffreForUpdateDto offre)
         {
             var query = "UPDATE offre SET  nb_poste = @nb_poste, fonction = @fonction, description = @description, " +
-                "mission = @mission WHERE offre_id = @offre_id";
+                "mission = @mission, type_offre = @type_offre WHERE offre_id = @offre_id";
 
             var parameters = new DynamicParameters();
             parameters.Add("offre_id", offre_id, DbType.Int32);
@@ -93,7 +95,7 @@ namespace ProjetPFE.Repository
             parameters.Add("fonction", offre.fonction, DbType.String);
             parameters.Add("description", offre.description, DbType.String);
             parameters.Add("mission", offre.mission, DbType.String);
-
+            parameters.Add("type_offre", offre.type_offre, DbType.String);
 
             using (var connection = _context.CreateConnection())
             {

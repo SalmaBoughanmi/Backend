@@ -7,6 +7,7 @@
         public string? fonction { get; set; }
         public string? description { get; set; }
         public string? mission { get; set; }
+        public string? type_offre { get; set; }
         public ICollection<demande>? demandes { get; set; }
     }
 }
