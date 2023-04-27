@@ -17,6 +17,7 @@
     }
     public enum nom_role
     {
+        admin,
         demandeur,
         chef,
         rh,
