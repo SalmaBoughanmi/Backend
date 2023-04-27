@@ -50,6 +50,9 @@ namespace ProjetPFE.Repository
 
 
 
+
+
+
         public async Task<offre> CreateOffre(OffreForCreationDto offre)
         {
             var query = "INSERT INTO offre (nb_poste, fonction, description, mission, type_offre) " +
@@ -148,6 +151,17 @@ namespace ProjetPFE.Repository
         }
 
 
+
+        public async Task<IEnumerable<offre>> GetoffresByTypeOffre(string type_offre)
+        {
+            var query = "SELECT * FROM offre WHERE type_offre = @type_offre";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var offres = await connection.QueryAsync<offre>(query, new { type_offre });
+                return offres.ToList();
+            }
+        }
 
 
 

@@ -24,5 +24,10 @@
         ds
 
     }
+    public enum types
+    {
+        recruter,
+        postuler
+    }
 
 }

@@ -58,6 +58,19 @@ namespace ProjetPFE.Controllers
         }
 
 
+        [HttpGet("type/{type_offre}")]
+        public async Task<IActionResult> GetOffresByTypeOffre(string type_offre)
+        {
+            var offres = await _offreRepo.GetoffresByTypeOffre(type_offre);
+
+            if (offres == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(offres);
+        }
+
 
 
         [HttpPost]

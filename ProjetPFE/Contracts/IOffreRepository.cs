@@ -7,6 +7,7 @@ namespace ProjetPFE.Contracts
     {
         public Task<IEnumerable<offre>> Getoffres();
         public Task<offre> Getoffre(int offre_id);
+        Task<IEnumerable<offre>> GetoffresByTypeOffre(string type_offre);
         public Task<offre> CreateOffre(OffreForCreationDto offre);
         public Task UpdateOffre(int offre_id, OffreForUpdateDto offre);
         public Task DeleteOffre(int offre_id);
