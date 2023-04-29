@@ -55,21 +55,21 @@ namespace ProjetPFE.Controllers
 
 
 
-        [HttpPost]
-        public async Task<IActionResult> AddEmploye([FromBody] employe employe)
-        {
-            if (employe == null)
-            {
-                return BadRequest();
-            }
-            int rowsAffected = await _employeRepository.AddEmploye(employe);
-            if (rowsAffected == 0)
-            {
-                return BadRequest("Unable to add employe.");
-            }
-            return Ok("Employe added successfully.");
+        //[HttpPost]
+        //public async Task<IActionResult> AddEmploye([FromBody] employe employe)
+        //{
+        //    if (employe == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    int rowsAffected = await _employeRepository.AddEmploye(employe);
+        //    if (rowsAffected == 0)
+        //    {
+        //        return BadRequest("Unable to add employe.");
+        //    }
+        //    return Ok("Employe added successfully.");
 
-        }
+        //}
 
 
 
@@ -118,6 +118,23 @@ namespace ProjetPFE.Controllers
 
         }
 
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEmploye(EmployeForCreationDto employe)
+        {
+            try
+            {
+                var createdemploye = await _employeRepository.CreateEmploye(employe);
+                return CreatedAtRoute("employeById", new { employe_id = createdemploye.employe_id }, createdemploye);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
+        }
 
     }
 }

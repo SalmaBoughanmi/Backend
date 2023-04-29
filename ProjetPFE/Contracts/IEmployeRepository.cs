@@ -1,4 +1,5 @@
-﻿using ProjetPFE.Entities;
+﻿using ProjetPFE.Dto;
+using ProjetPFE.Entities;
 
 namespace ProjetPFE.Contracts
 {
@@ -6,9 +7,11 @@ namespace ProjetPFE.Contracts
     {
         Task<ICollection<employe>> Getemployes();
         Task<employe> GetEmployeByIdAsync(int id);
-        Task<int> AddEmploye(employe employe);
+        //Task<int> AddEmploye(employe employe);
         Task<int> UpdateEmployeAsync(employe employe);
         Task<int> DeleteEmployeAsync(int id);
         Task<employe?> Login(string email, string password);
+        public Task<employe> CreateEmploye(EmployeForCreationDto employe);
+      
     }
 }
